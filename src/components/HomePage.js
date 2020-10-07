@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { getDisorders } from "../api/disorderApi";
 import DisorderList from "./DisorderList";
+import { Link } from "react-router-dom";
+import AboutPage from "./AboutPage";
 
 
 function HomePage() {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -6,17 +6,18 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
 import { makeStyles } from "@material-ui/core/styles";
+import { Route, Redirect } from "react-router-dom";
+import AboutPage from "./AboutPage";
 
 function DisorderList(props) {
-
     const useStyles = makeStyles((theme) => ({
         root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            overflow: "hidden",
             backgroundColor: theme.palette.background.paper,
-            padding: "150px"
+            padding: "150px",
         },
         titleBar: {
             background:
@@ -27,23 +28,25 @@ function DisorderList(props) {
         },
     }));
     const classes = useStyles();
+    const [isClicked,setIsClicked] = useState(true);
+    if(!isClicked){
+        return <Redirect to="/about" />
+    }
+
     return (
-
-        <div className={classes.root} >
-            <GridList cols={3} >
-
+        <div className={classes.root}>
+            <GridList cols={3}>
                 {props.disorders.map((disorder) => {
                     return (
                         <GridListTile key={disorder.id}>
-                            <img
-                                src={disorder.disorder_image}
-                            />
+                            <img src={disorder.disorder_image} />
                             <GridListTileBar
                                 title={disorder.disorder_name}
                                 subtitle={disorder.disorder_short_desc}
                                 actionIcon={
                                     <IconButton
                                         aria-label={`info about ${disorder.disorder_name}`}
+                                        onClick={() => setIsClicked(false)}
                                         className={classes.icon}
                                     >
                                         <InfoIcon />

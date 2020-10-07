@@ -1,14 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 
-class AboutPage extends React.Component {
-    render() {
+function AboutPage (){
+
         return (
             <>
-                <h2> About Page </h2>
-                <p>using class components</p>
+                <h2> Disorder Information </h2>
+
             </>
         );
     }
-}
+
 
 export default AboutPage;
